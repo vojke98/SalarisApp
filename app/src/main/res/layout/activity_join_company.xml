@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    tools:context=".JoinCompanyActivity"
+    android:descendantFocusability="beforeDescendants" >
+
+  <EditText
+      android:id="@+id/etRefKey1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <EditText
+      android:id="@+id/etRefKey2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toStartOf="@+id/etRefKey3"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/etRefKey1"
+      app:layout_constraintTop_toTopOf="@+id/etRefKey1"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <EditText
+      android:id="@+id/etRefKey3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toStartOf="@+id/etRefKey4"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/etRefKey2"
+      app:layout_constraintTop_toTopOf="@+id/etRefKey2"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <EditText
+      android:id="@+id/etRefKey4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toStartOf="@+id/etRefKey5"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/etRefKey3"
+      app:layout_constraintTop_toTopOf="@+id/etRefKey3"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <EditText
+      android:id="@+id/etRefKey5"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toStartOf="@+id/etRefKey6"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toEndOf="@+id/etRefKey4"
+      app:layout_constraintTop_toTopOf="@+id/etRefKey4"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <EditText
+      android:id="@+id/etRefKey6"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
+      android:ems="2"
+      android:inputType="textCapCharacters|textNoSuggestions"
+      android:textAlignment="center"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/etRefKey5"
+      android:maxLength="2"
+      android:selectAllOnFocus="true"
+      android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
+      android:autofillHints=""
+      tools:ignore="LabelFor" />
+
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:text="@string/enter_company_reference_key"
+      app:layout_constraintBottom_toTopOf="@+id/etRefKey1"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/btnJoin"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:text="@string/request_to_join"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/etRefKey1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

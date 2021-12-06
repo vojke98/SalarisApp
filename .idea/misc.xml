@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/bottom_shadow_gradient.xml" value="2.392857142857143" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_animation.xml" value="0.2203125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_center.xml" value="0.2203125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_dark.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_end.xml" value="0.2203125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_light.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/gradient_start.xml" value="0.2203125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/drawable/top_shadow_gradient.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/at_most_sphere.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/barokah_signature.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/batfide_signature.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/buggie.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/cookie.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/forturn.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/hall_of_fame.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/magical_spring.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/mory.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/font/windsong.xml" value="0.396875" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_comp_list.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_company.xml" value="0.33" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_create_company.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_join_company.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_join_requests.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_test.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/content_test.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/customcell.xml" value="0.34794520547945207" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/fragment_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/toolbar.xml" value="0.34057971014492755" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/menu/toolbar_menu.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

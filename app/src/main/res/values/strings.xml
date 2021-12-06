@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Salaris</string>
+    <string name="login">Login</string>
+    <string name="new_on_salaris">New on Salaris? <b>Register.</b></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login">Already registered? <b>Login.</b></string>
+    <string name="fist_name">Fist name</string>
+    <string name="last_name">Last name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal code</string>
+    <string name="address_line">Address line</string>
+    <string name="tax_number">Tax number</string>
+    <string name="company">Company</string>
+    <string name="please_create_new_company_or_join_existing">Please create a new company or join an existing one to start using the <b>Salaris</b> app.</string>
+    <string name="company_name">Company name</string>
+    <string name="by_ceo">by CEO</string>
+    <string name="add_company">Add company</string>
+    <string name="about">About:</string>
+    <string name="log_out">Log Out</string>
+    <string name="join">Join</string>
+    <string name="enter_company_reference_key">Enter company reference key</string>
+    <string name="request_to_join">Request to join</string>
+    <!-- Strings used for fragments for navigation -->
+
+</resources>
