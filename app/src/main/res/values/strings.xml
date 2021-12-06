@@ -23,6 +23,11 @@
     <string name="join">Join</string>
     <string name="enter_company_reference_key">Enter company reference key</string>
     <string name="request_to_join">Request to join</string>
+    <string name="create_company">Create Company</string>
+    <string name="don_t_own_a_company_join_existing">Don\'t own a company? <b>Join existing.</b></string>
+    <string name="already_own_a_company_add_to_salaris">Already own a company? <b>Add to Salaris.</b></string>
+    <string name="join_company">Join Company</string>
+    <string name="create">Create</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

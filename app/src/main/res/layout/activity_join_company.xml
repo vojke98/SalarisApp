@@ -11,6 +11,20 @@
     tools:context=".JoinCompanyActivity"
     android:descendantFocusability="beforeDescendants" >
 
+  <TextView
+      android:id="@+id/tvJoinCompany"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:fontFamily="@font/cookie"
+      android:text="@string/join_company"
+      android:textSize="36sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.0" />
+
   <EditText
       android:id="@+id/etRefKey1"
       android:layout_width="wrap_content"
@@ -25,7 +39,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -42,7 +55,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -59,7 +71,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -76,7 +87,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -93,7 +103,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -109,7 +118,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <TextView
@@ -133,5 +141,26 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/etRefKey1" />
+
+  <TextView
+      android:id="@+id/tvJoinExisting"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:text="@string/already_own_a_company_add_to_salaris"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintVertical_bias="1.0" />
+
+  <View
+      android:id="@+id/divider"
+      android:layout_width="409dp"
+      android:layout_height="1dp"
+      android:layout_marginBottom="16dp"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintBottom_toTopOf="@+id/tvJoinExisting"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
