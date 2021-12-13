@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "Prosimo, popolnite vsa polja", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Prosimo, popolnite vsa polja.", Toast.LENGTH_SHORT).show();
                 }
                 else goToCompanyActivity();
 
