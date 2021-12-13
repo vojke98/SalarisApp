@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                         || TextUtils.isEmpty(etFirstName.getText().toString()) || TextUtils.isEmpty(etLastName.getText().toString())
                         || TextUtils.isEmpty(etPostNo.getText().toString()) || TextUtils.isEmpty(etTaxNo.getText().toString())
                         || TextUtils.isEmpty(etConfirmPassword.getText().toString())){
-                    Toast.makeText(RegisterActivity.this, "Prosimo, popolnite vsa polja", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Prosimo, popolnite vsa polja.", Toast.LENGTH_SHORT).show();
                 }
 
                 else goToCompanyActivity();
