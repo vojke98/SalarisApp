@@ -2,9 +2,12 @@ package com.example.salaris;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,11 +30,19 @@ public class LoginActivity extends AppCompatActivity {
 
         this.tvRegister.setOnClickListener(view -> goToRegisterActivity());
 
-        this.btnLogin.setOnClickListener(view -> {
-            if(checkLogin()){
-                goToCompanyActivity();
+        this.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())){
+                    Toast.makeText(LoginActivity.this, "Prosimo, popolnite vsa polja", Toast.LENGTH_SHORT).show();
+                }
+                else goToCompanyActivity();
+
             }
         });
+
+
     }
 
     private void goToRegisterActivity() {
