@@ -31,7 +31,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".WorkhoursActivity"
+            android:name=".StaffActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity

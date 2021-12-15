@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,7 @@ public class CompanyActivity extends AppCompatActivity {
     FloatingActionButton fabAdd, fabCreate, fabJoin;
     TextView tvCreate, tvJoin;
     Toolbar tbToolbar;
+    CardView cardAlert, cardCompany;
     private boolean fabVisible = false;
 
     private Animation fabOpenRotateAnim, fabCloseRotateAnim, fabExpandAnim, fabCollapseAnim;
@@ -50,11 +52,15 @@ public class CompanyActivity extends AppCompatActivity {
         this.tvCreate = (TextView) findViewById(R.id.tvCreate);
         this.tvJoin = (TextView) findViewById(R.id.tvJoin);
         this.tbToolbar = (Toolbar) findViewById(R.id.tbToolbar);
+        this.cardAlert = (CardView) findViewById(R.id.cardAlert);
+        this.cardCompany = (CardView) findViewById(R.id.cardCompany);
 
         this.fabOpenRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_open_rotate_anim);
         this.fabCloseRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_close_rotate_anim);
         this.fabExpandAnim = AnimationUtils.loadAnimation(this, R.anim.fab_expand_anim);
         this.fabCollapseAnim = AnimationUtils.loadAnimation(this, R.anim.fab_collapse_anim);
+
+        cardAlert.setOnClickListener(v -> goToStaffActivity());
 
         setSupportActionBar(tbToolbar);
     }
@@ -145,6 +151,18 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void goToJoinCompanyActivity() {
         Intent intent = new Intent(this, JoinCompanyActivity.class);
+        intent.putExtra("argName", "value");
+        startActivity(intent);
+    }
+
+    private void goToStaffActivity() {
+        Intent intent = new Intent(this, StaffActivity.class);
+        intent.putExtra("argName", "value");
+        startActivity(intent);
+    }
+
+    private void goToUserWorkhoursActivity() {
+        Intent intent = new Intent(this, UserWorkhoursActivity.class);
         intent.putExtra("argName", "value");
         startActivity(intent);
     }

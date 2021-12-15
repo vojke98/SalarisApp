@@ -11,18 +11,18 @@ public class Period {
     }
 
     public long getMills() {
-        return this.from.getTime() - this.until.getTime();
+        return this.until.getTime() - this.from.getTime();
     }
 
     public long getSeconds() {
-        return (this.from.getTime() - this.until.getTime()) / 1000;
+        return getMills() / 1000;
     }
 
     public long getMinutes() {
-        return (this.getSeconds() % 3600) / 60;
+        return this.getSeconds() / 60;
     }
 
     public long getHours() {
-        return this.getSeconds() / 3600;
+        return this.getMinutes() / 60;
     }
 }

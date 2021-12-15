@@ -6,4 +6,150 @@
     android:layout_height="match_parent"
     tools:context=".UserWorkhoursActivity">
 
+    <TextView
+        android:id="@+id/tvWorker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Last name, First name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTaxNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Tax no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvWorker" />
+
+    <TextView
+        android:id="@+id/tvHourlyRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Hourly rate"
+        app:layout_constraintStart_toStartOf="@+id/tvWorker"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorker" />
+
+    <Button
+        android:id="@+id/btnShift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="START SHIFT"
+        android:backgroundTint="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHourlyRate" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWorkhourList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/llTotalHours"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnShift"
+        android:elevation="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/llTotalHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/llTotalPaid"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvTotalHoursLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total hours: "
+            />
+
+        <TextView
+            android:id="@+id/tvTotalHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0h"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTotalEarned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/llTotalHours"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvTotalEarnedLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Earned: " />
+
+        <TextView
+            android:id="@+id/tvTotalEarned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 €" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTotalPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvTotalPaidLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paid: " />
+
+        <TextView
+            android:id="@+id/tvTotalPaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 €" />
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/tvRemainingPayment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRemainingPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Remaining payment: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
