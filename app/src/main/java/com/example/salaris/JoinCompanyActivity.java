@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class JoinCompanyActivity extends AppCompatActivity {
+public class JoinCompanyActivity extends AppCompatActivity  {
     private Button btnJoin;
     private EditText etRefKey1, etRefKey2, etRefKey3, etRefKey4, etRefKey5, etRefKey6;
 
