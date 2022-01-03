@@ -8,7 +8,7 @@ public class Role {
     String title;
     Double minHourlyRate;
 
-    Role(String title, Double minHourlyRate) {
+    public Role(String title, Double minHourlyRate) {
         this.title = title;
         this.minHourlyRate = minHourlyRate;
     }

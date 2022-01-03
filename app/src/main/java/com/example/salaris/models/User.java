@@ -22,9 +22,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Date getDateJoined() {
-        return dateJoined;
-    }
+    public Date getDateJoined() { return dateJoined; }
 
     public void setDateJoined(Date dateJoined) {
         this.dateJoined = dateJoined;

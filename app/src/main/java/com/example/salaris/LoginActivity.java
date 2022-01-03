@@ -29,20 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         this.tvRegister = (TextView) findViewById(R.id.tvRegister);
 
         this.tvRegister.setOnClickListener(view -> goToRegisterActivity());
-
-        this.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())){
-                    Toast.makeText(LoginActivity.this, "Prosimo, popolnite vsa polja.", Toast.LENGTH_SHORT).show();
-                }
-                else goToCompanyActivity();
-
-            }
-        });
-
-
+        this.btnLogin.setOnClickListener(view -> checkLogin());
     }
 
     private void goToRegisterActivity() {
@@ -61,8 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    private boolean checkLogin() {
-
-        return true;
+    private void checkLogin() {
+        if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())){
+            Toast.makeText(LoginActivity.this, "Please fill all required fields.", Toast.LENGTH_SHORT).show();
+        } else goToCompanyActivity();
     }
 }

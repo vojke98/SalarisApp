@@ -50,22 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         this.tvLogin.setOnClickListener(view -> finish());
 
-        this.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())
-                        || TextUtils.isEmpty(etAddressLine.getText().toString()) || TextUtils.isEmpty(etCity.getText().toString())
-                        || TextUtils.isEmpty(etFirstName.getText().toString()) || TextUtils.isEmpty(etLastName.getText().toString())
-                        || TextUtils.isEmpty(etPostNo.getText().toString()) || TextUtils.isEmpty(etTaxNo.getText().toString())
-                        || TextUtils.isEmpty(etConfirmPassword.getText().toString())){
-                    Toast.makeText(RegisterActivity.this, "Prosimo, popolnite vsa polja!", Toast.LENGTH_SHORT).show();
-                }
-
-                else goToCompanyActivity();
-
-            }
-        });
+        this.btnRegister.setOnClickListener(view -> checkRegister());
     }
     private void goToCompanyActivity() {
         Intent intent = new Intent(this, CompanyActivity.class);
@@ -75,6 +60,16 @@ public class RegisterActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void checkRegister() {
+        if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())
+                || TextUtils.isEmpty(etAddressLine.getText().toString()) || TextUtils.isEmpty(etCity.getText().toString())
+                || TextUtils.isEmpty(etFirstName.getText().toString()) || TextUtils.isEmpty(etLastName.getText().toString())
+                || TextUtils.isEmpty(etPostNo.getText().toString()) || TextUtils.isEmpty(etTaxNo.getText().toString())
+                || TextUtils.isEmpty(etConfirmPassword.getText().toString())){
+            Toast.makeText(RegisterActivity.this, "Prosimo, popolnite vsa polja!", Toast.LENGTH_SHORT).show();
+        } else goToCompanyActivity();
     }
 
 }

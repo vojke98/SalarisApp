@@ -78,9 +78,7 @@ public class CompanyActivity extends AppCompatActivity {
     private void setOnClickListeners() {
         this.fabAdd.setOnClickListener(view -> fabToggle());
 
-        this.fabCreate.setOnClickListener(view -> {
-
-        });
+        this.fabCreate.setOnClickListener(view -> goToCreateCompanyActivity());
 
         this.fabJoin.setOnClickListener(view -> goToJoinCompanyActivity());
     }
@@ -145,6 +143,12 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void goToJoinCompanyActivity() {
         Intent intent = new Intent(this, JoinCompanyActivity.class);
+        intent.putExtra("argName", "value");
+        startActivity(intent);
+    }
+
+    private void goToCreateCompanyActivity() {
+        Intent intent = new Intent(this, CreateCompanyActivity.class);
         intent.putExtra("argName", "value");
         startActivity(intent);
     }
