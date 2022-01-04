@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.salaris.models.Company;
+import com.example.salaris.models.Role;
 import com.example.salaris.models.User;
+import com.example.salaris.models.User_Company;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
@@ -41,6 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     private void goToCompanyActivity() {
         Intent intent = new Intent(this, CompanyActivity.class);
         User user = new User("Dejan", "Vojinović", "Gerbičeva Ulica 51a", "Ljubljana", "1000", "12345678", "dejanvojinovic@yahoo.com", "pass");
+        Company company = new Company("SALARIS", "Adress line", "City", "1000", "SL1234567", "About this company");
+        Role role = new Role("CEO", 15.0);
+        User_Company user_company = new User_Company(user, company, role, 20.0);
+
+
+        intent.putExtra("user", user);
         intent.putExtra("user", user);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.salaris.models.Company;
 import com.example.salaris.models.User;
 
 public class RegisterActivity extends AppCompatActivity {

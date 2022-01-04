@@ -6,7 +6,7 @@ public class Company {
     private String name, address, city, postNo, taxNo, about;
     private User CEO;
 
-    Company(String name, String address, String city, String postNo, String taxNo, String about) {
+    public Company(String name, String address, String city, String postNo, String taxNo, String about) {
         this.name = name;
         this.address = address;
         this.city = city;

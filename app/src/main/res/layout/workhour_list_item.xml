@@ -70,26 +70,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/tvEarned"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0 €"
-                android:textAlignment="textEnd"
-                android:textColor="@color/accent"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="right">
 
-            <TextView
-                android:id="@+id/tvTotalHours"
+                <TextView
+                    android:id="@+id/tvEarned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/accent"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvEur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/accent"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8h (0 €/h)"
-                android:textAlignment="textEnd"
-                android:textColor="#969696"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="right">
+                <TextView
+                    android:id="@+id/tvTotalHours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textAlignment="textEnd"
+                    android:textColor="#969696"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="h"
+                    android:textAlignment="textEnd"
+                    android:textColor="#969696"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

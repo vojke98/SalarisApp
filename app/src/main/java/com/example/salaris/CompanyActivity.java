@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class CompanyActivity extends AppCompatActivity {
     TextView tvCreate, tvJoin;
     Toolbar tbToolbar;
     private boolean fabVisible = false;
+    CardView cardCompany;
 
     private Animation fabOpenRotateAnim, fabCloseRotateAnim, fabExpandAnim, fabCollapseAnim;
 
@@ -50,6 +52,7 @@ public class CompanyActivity extends AppCompatActivity {
         this.tvCreate = (TextView) findViewById(R.id.tvCreate);
         this.tvJoin = (TextView) findViewById(R.id.tvJoin);
         this.tbToolbar = (Toolbar) findViewById(R.id.tbToolbar);
+        this.cardCompany = (CardView) findViewById(R.id.cardCompany);
 
         this.fabOpenRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_open_rotate_anim);
         this.fabCloseRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_close_rotate_anim);
@@ -77,10 +80,10 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void setOnClickListeners() {
         this.fabAdd.setOnClickListener(view -> fabToggle());
-
         this.fabCreate.setOnClickListener(view -> goToCreateCompanyActivity());
-
         this.fabJoin.setOnClickListener(view -> goToJoinCompanyActivity());
+
+        this.cardCompany.setOnClickListener(view -> goToWorkhourActivity());
     }
 
     private void checkLocationService() {
@@ -149,6 +152,12 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void goToCreateCompanyActivity() {
         Intent intent = new Intent(this, CreateCompanyActivity.class);
+        intent.putExtra("argName", "value");
+        startActivity(intent);
+    }
+
+    private void goToWorkhourActivity() {
+        Intent intent = new Intent(this, WorkhoursActivity.class);
         intent.putExtra("argName", "value");
         startActivity(intent);
     }

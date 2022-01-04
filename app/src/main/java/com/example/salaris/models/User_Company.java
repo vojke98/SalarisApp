@@ -6,7 +6,7 @@ public class User_Company {
     private Role role;
     private Double hourlyRate;
 
-    User_Company(User user, Company company, Role role, double hourlyRate) {
+    public User_Company(User user, Company company, Role role, double hourlyRate) {
         this.user = user;
         this.company = company;
         this.role = role;
@@ -16,6 +16,8 @@ public class User_Company {
     public Role getRole() {
         return role;
     }
+
+    public User getUser() { return user; }
 
     public void setRole(Role role) {
         this.role = role;
