@@ -15,6 +15,10 @@ public class Workhour {
         this.until = until;
     }
 
+    public String toString() {
+        return this.user_company + ", from: " + this.from + " - " + this.until;
+    }
+
     public double getTotalEarned() {
         double hourlyRate = user_company.getHourlyRate();
 
@@ -24,7 +28,7 @@ public class Workhour {
     public double getTotalHours() {
         Period p = new Period(this.from, this.until);
 
-        return (int) Math.abs(p.getHours());
+        return Math.abs(p.getHours());
     }
 
     public void setUser_company(User_Company user_company) { this.user_company = user_company; }
@@ -35,17 +39,17 @@ public class Workhour {
     }
 
     public String getDayOfWeekString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DDD");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
         return simpleDateFormat.format(this.from);
     }
 
     public String getTimeFromString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         return simpleDateFormat.format(this.from);
     }
 
     public String getTimeUntilString() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         return simpleDateFormat.format(this.until);
     }
 }

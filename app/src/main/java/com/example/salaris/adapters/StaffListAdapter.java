@@ -13,10 +13,20 @@ import com.example.salaris.R;
 import com.example.salaris.UserWorkhoursActivity;
 import com.example.salaris.models.User;
 import java.util.ArrayList;
+import java.util.List;
+
+public interface ItemListener {
+    void clicked(User clickedUser);
+}
 
 public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.StaffHolder> {
 
     private ArrayList<User> staff;
+    private List<ItemListener> listeners = new ArrayList<>();
+
+    public void addItemListener(ItemListener il) {
+        listeners.add(il);
+    }
 
     public StaffListAdapter(ArrayList<User> staff) {
         this.staff = staff;
@@ -63,17 +73,14 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.Staf
             tvCity = (TextView) itemView.findViewById(R.id.tvCity);
             tvHourlyRate = (TextView) itemView.findViewById(R.id.tvHourlyRate);
 
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    // get position
-                    int pos = getAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                int pos = getAdapterPosition();
 
-                    // check if item still exists
-                    if(pos != RecyclerView.NO_POSITION){
-                        User clickeUser = staff.get(pos);
-                        Toast.makeText(v.getContext(), "You clicked " + clickeUser.getFirstName(), Toast.LENGTH_SHORT).show();
-                    }
+                if(pos != RecyclerView.NO_POSITION){
+                    User clickeUser = staff.get(pos);
+                    for (ItemListener hl : listeners)
+                        hl.clicked(clickeUser);
+                    Toast.makeText(view.getContext(), "You clicked " + clickeUser.getFirstName(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

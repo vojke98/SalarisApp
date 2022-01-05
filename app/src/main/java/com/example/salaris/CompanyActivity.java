@@ -5,8 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -17,19 +17,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.salaris.models.Company;
+import com.example.salaris.models.Role;
 import com.example.salaris.models.User;
+import com.example.salaris.models.User_Company;
+import com.example.salaris.models.Workhour;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.ArrayList;
 
 public class CompanyActivity extends AppCompatActivity {
     User user;
+    Company company;
     Context context;
+
     FloatingActionButton fabAdd, fabCreate, fabJoin;
     TextView tvCreate, tvJoin;
     Toolbar tbToolbar;
+    CardView cardCompany, cardAlert;
+    ImageView ivLeave;
+
     private boolean fabVisible = false;
-    CardView cardCompany;
 
     private Animation fabOpenRotateAnim, fabCloseRotateAnim, fabExpandAnim, fabCollapseAnim;
 
@@ -45,7 +54,9 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         this.user = (User) getIntent().getSerializableExtra("user");
+        this.company = fetchUserCompany(user);
         this.context = this;
+
         this.fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         this.fabCreate = (FloatingActionButton) findViewById(R.id.fabCreate);
         this.fabJoin = (FloatingActionButton) findViewById(R.id.fabJoin);
@@ -53,11 +64,18 @@ public class CompanyActivity extends AppCompatActivity {
         this.tvJoin = (TextView) findViewById(R.id.tvJoin);
         this.tbToolbar = (Toolbar) findViewById(R.id.tbToolbar);
         this.cardCompany = (CardView) findViewById(R.id.cardCompany);
+        this.cardAlert = (CardView) findViewById(R.id.cardAlert);
+        this.ivLeave = (ImageView) findViewById(R.id.ivLeave);
+
+        if(this.company != null)  cardAlert.setVisibility(View.GONE);
+        else cardCompany.setVisibility(View.GONE);
 
         this.fabOpenRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_open_rotate_anim);
         this.fabCloseRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_close_rotate_anim);
         this.fabExpandAnim = AnimationUtils.loadAnimation(this, R.anim.fab_expand_anim);
         this.fabCollapseAnim = AnimationUtils.loadAnimation(this, R.anim.fab_collapse_anim);
+
+        this.ivLeave.setOnClickListener(view -> leaveCompany());
 
         setSupportActionBar(tbToolbar);
     }
@@ -83,7 +101,7 @@ public class CompanyActivity extends AppCompatActivity {
         this.fabCreate.setOnClickListener(view -> goToCreateCompanyActivity());
         this.fabJoin.setOnClickListener(view -> goToJoinCompanyActivity());
 
-        this.cardCompany.setOnClickListener(view -> goToWorkhourActivity());
+        this.cardCompany.setOnClickListener(view -> goToStaffActivity());
     }
 
     private void checkLocationService() {
@@ -146,19 +164,57 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void goToJoinCompanyActivity() {
         Intent intent = new Intent(this, JoinCompanyActivity.class);
-        intent.putExtra("argName", "value");
+        intent.putExtra("user", this.user);
         startActivity(intent);
     }
 
     private void goToCreateCompanyActivity() {
         Intent intent = new Intent(this, CreateCompanyActivity.class);
-        intent.putExtra("argName", "value");
+        intent.putExtra("user", this.user);
         startActivity(intent);
     }
 
     private void goToWorkhourActivity() {
         Intent intent = new Intent(this, WorkhoursActivity.class);
-        intent.putExtra("argName", "value");
+        intent.putExtra("user", this.user);
+        intent.putExtra("company", this.company);
         startActivity(intent);
+    }
+
+    private void goToStaffActivity() {
+        Intent intent = new Intent(this, StaffActivity.class);
+        intent.putExtra("user", this.user);
+        intent.putExtra("company", this.company);
+        startActivity(intent);
+    }
+
+    private Company fetchUserCompany(User user) {
+        Company company = new Company("SALARIS", "Adress line", "City", "1000", "SL1234567", "About this company");
+
+        return company;
+    }
+
+    private void leaveCompany() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Remove company");
+        builder.setMessage("Are you sure?");
+        builder.setPositiveButton("YES", (dialog, which) -> {
+            this.company = null;
+
+            this.cardAlert.setVisibility(View.VISIBLE);
+            this.cardCompany.setVisibility(View.GONE);
+
+            dialog.dismiss();
+        });
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing
+
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

@@ -22,6 +22,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String toString() {
+        return this.lastName + ", " + this.firstName + " (" + this.taxNo + ")";
+    }
+
     public Date getDateJoined() { return dateJoined; }
 
     public void setDateJoined(Date dateJoined) {

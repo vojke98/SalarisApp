@@ -6,7 +6,7 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="already_registered_login">Already registered? <b>Login.</b></string>
-    <string name="dont_own_join">Don\'t own a company? <b>Join existing.</b></string>
+    <string name="dont_own_join">Don\'t own a Company? <b>Join existing.</b></string>
     <string name="fist_name">Fist name</string>
     <string name="last_name">Last name</string>
     <string name="confirm_password">Confirm password</string>
@@ -26,6 +26,10 @@
     <string name="request_to_join">Request to join</string>
     <string name="create">Create</string>
     <string name="workhours">Workhours:</string>
+    <string name="stopShift">STOP SHIFT</string>
+    <string name="startShift">START SHIFT</string>
+    <string name="eur">€</string>
+    <string name="already_own_company">Already own a Company? <b>Create new.</b></string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

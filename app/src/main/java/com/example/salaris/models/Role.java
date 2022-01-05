@@ -13,6 +13,10 @@ public class Role {
         this.minHourlyRate = minHourlyRate;
     }
 
+    public String toString() {
+        return this.title + "(min. " + this.minHourlyRate + "€/h)";
+    }
+
     public String getTitle() {
         return title;
     }

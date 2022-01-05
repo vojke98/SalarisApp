@@ -25,7 +25,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -42,7 +41,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -59,7 +57,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -76,7 +73,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -93,7 +89,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <EditText
@@ -109,7 +104,6 @@
       android:maxLength="2"
       android:selectAllOnFocus="true"
       android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-      android:autofillHints=""
       tools:ignore="LabelFor" />
 
   <TextView
@@ -133,5 +127,27 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/etRefKey1" />
+
+  <View
+      android:id="@+id/divider"
+      android:layout_width="409dp"
+      android:layout_height="1dp"
+      android:layout_marginBottom="16dp"
+      android:background="?android:attr/listDivider"
+      app:layout_constraintBottom_toTopOf="@+id/tvCreate"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:id="@+id/tvCreate"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:text="@string/already_own_company"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

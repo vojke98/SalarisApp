@@ -47,7 +47,7 @@
             android:id="@+id/tvCompanyCEO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CEO"
+            android:text="Worker"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -75,13 +75,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/tvTotalHoursLbl"
+            android:id="@+id/tvTotalEarnedLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: " />
+            android:text="Total earned: " />
 
         <TextView
-            android:id="@+id/tvTotalHours"
+            android:id="@+id/tvTotalEarned"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0" />
@@ -93,9 +93,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="@string/workhours"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llWorker" />
+        app:layout_constraintTop_toBottomOf="@+id/btnStartStop" />
+
+    <Button
+        android:id="@+id/btnStartStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="START SHIFT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llWorker"
+        android:backgroundTint="@color/accent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

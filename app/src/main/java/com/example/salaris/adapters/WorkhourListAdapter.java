@@ -64,17 +64,12 @@ public class WorkhourListAdapter extends RecyclerView.Adapter<WorkhourListAdapte
             tvEarned = (TextView) itemView.findViewById(R.id.tvEarned);
             tvTotalHours = (TextView) itemView.findViewById(R.id.tvTotalHours);
 
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    // get position
-                    int pos = getAdapterPosition();
+            itemView.setOnClickListener(view -> {
+                int pos = getAdapterPosition();
 
-                    // check if item still exists
-                    if(pos != RecyclerView.NO_POSITION){
-                        Workhour clickedWorkhour = workhours.get(pos);
-                        Toast.makeText(v.getContext(), "You clicked " + clickedWorkhour.getDateString(), Toast.LENGTH_SHORT).show();
-                    }
+                if(pos != RecyclerView.NO_POSITION){
+                    Workhour clickedWorkhour = workhours.get(pos);
+                    Toast.makeText(view.getContext(), "You clicked " + clickedWorkhour, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -89,11 +84,7 @@ public class WorkhourListAdapter extends RecyclerView.Adapter<WorkhourListAdapte
         public void setTimeUntil(String time) {
             this.tvTimeUntil.setText(time);
         }
-        public void setEarned(Double earned) {
-            this.tvEarned.setText(earned + "");
-        }
-        public void setTotalHours(Double hours) {
-            this.tvTotalHours.setText(hours + "");
-        }
+        public void setEarned(Double earned) { this.tvEarned.setText(String.format("%.2f", earned)); }
+        public void setTotalHours(Double hours) { this.tvTotalHours.setText(String.format("%.2f", hours)); }
     }
 }

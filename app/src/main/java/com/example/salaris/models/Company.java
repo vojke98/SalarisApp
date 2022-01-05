@@ -2,7 +2,9 @@ package com.example.salaris.models;
 
 import com.example.salaris.models.User;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
     private String name, address, city, postNo, taxNo, about;
     private User CEO;
 
@@ -13,6 +15,10 @@ public class Company {
         this.postNo = postNo;
         this.taxNo = taxNo;
         this.about = about;
+    }
+
+    public String toString() {
+        return this.name + " (" + this.taxNo + ")";
     }
 
     public String getAbout() {

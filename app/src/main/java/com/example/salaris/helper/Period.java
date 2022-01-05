@@ -14,15 +14,11 @@ public class Period {
         return this.from.getTime() - this.until.getTime();
     }
 
-    public long getSeconds() {
-        return (this.from.getTime() - this.until.getTime()) / 1000;
-    }
+    public double getSeconds() { return this.getMills() / 1000.0; }
 
-    public long getMinutes() {
-        return (this.getSeconds() % 3600) / 60;
-    }
+    public double getMinutes() { return this.getSeconds() / 60; }
 
-    public long getHours() {
-        return this.getSeconds() / 3600;
+    public double getHours() {
+        return this.getMinutes() / 60;
     }
 }
