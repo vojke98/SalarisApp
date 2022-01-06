@@ -1,8 +1,5 @@
 package com.example.salaris.adapters;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,54 +8,54 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.salaris.R;
-import com.example.salaris.UserWorkhoursActivity;
-import com.example.salaris.models.User;
+import com.example.salaris.models.JoinRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.StaffHolder> {
+public class JoinRequestListAdapter extends RecyclerView.Adapter<JoinRequestListAdapter.JoinRequestHolder> {
 
-    private static final String TAG = "StaffRecyclerAdapter";
+    private ArrayList<JoinRequest> joinRequests;
+    private List<ItemListener> listeners = new ArrayList<>();
 
-    private ArrayList<User> staff;;
-    private OnUserListener mOnUserListener;
-
-    public StaffListAdapter(ArrayList<User> staff, OnUserListener onUserListener) {
-        this.staff = staff;
-        this.mOnUserListener = onUserListener;
+    public void addItemListener(ItemListener il) {
+        listeners.add(il);
     }
 
-    @NonNull
+    public JoinRequestListAdapter(ArrayList<JoinRequest> joinRequests) {
+        this.joinRequests = joinRequests;
+    }
+
     @Override
-    public StaffHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.staff_list_item, parent, false);
-        return new StaffHolder(view, mOnUserListener);
+    public JoinRequestHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+
+        View view = layoutInflater.inflate(R.layout.join_request_list_item, parent, false);
+        return new JoinRequestHolder(view);
     }
 
     @Override
     public int getItemCount() {
-        return staff == null? 0: staff.size();
+        return joinRequests == null? 0: joinRequests.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StaffHolder holder, final int position) {
-        final User worker = staff.get(position);
+    public void onBindViewHolder(@NonNull JoinRequestHolder holder, final int position) {
+        final JoinRequest worker = joinRequests.get(position);
 
-        holder.setLastName(worker.getLastName());
+        /*holder.setLastName(worker.getLastName());
         holder.setFirstName(worker.getFirstName());
         holder.setRole(worker.getRole().getTitle());
         holder.setAddress(worker.getAddress());
         holder.setPostNo(worker.getPostNo());
         holder.setCity(worker.getCity());
-        holder.setHourlyRate(worker.getHourlyRate() + " €/h)");
+        holder.setHourlyRate(worker.getHourlyRate() + " €/h)");*/
     }
 
-    public class StaffHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class JoinRequestHolder extends RecyclerView.ViewHolder{
 
         private TextView tvLastName, tvFirstName, tvRole, tvAddress, tvPostNo, tvCity, tvHourlyRate;
-        OnUserListener mOnUserListener;
 
-        public StaffHolder(View itemView, OnUserListener onUserListener) {
+        public JoinRequestHolder(View itemView) {
             super(itemView);
 
             tvLastName = (TextView) itemView.findViewById(R.id.tvLastName);
@@ -68,15 +65,15 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.Staf
             tvPostNo = (TextView) itemView.findViewById(R.id.tvPostNo);
             tvCity = (TextView) itemView.findViewById(R.id.tvCity);
             tvHourlyRate = (TextView) itemView.findViewById(R.id.tvHourlyRate);
-            mOnUserListener = onUserListener;
 
-            itemView.setOnClickListener(this);
-        }
+            itemView.setOnClickListener(view -> {
+                int pos = getAdapterPosition();
 
-        @Override
-        public void onClick(View view) {
-            Log.d(TAG, "onClick: " + getAdapterPosition());
-            mOnUserListener.onUserClick(getAdapterPosition());
+                if(pos != RecyclerView.NO_POSITION){
+                    JoinRequest clickedJoinRequest = joinRequests.get(pos);
+                    Toast.makeText(view.getContext(), "You clicked " + clickedJoinRequest, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
         public void setLastName(String lastName) {
@@ -106,9 +103,5 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.Staf
         public void setHourlyRate(String hourlyRate) {
             this.tvHourlyRate.setText(hourlyRate);
         }
-    }
-
-    public interface OnUserListener{
-        void onUserClick(int position);
     }
 }

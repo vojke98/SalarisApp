@@ -19,7 +19,7 @@
     <string name="company_name">Company name</string>
     <string name="by_ceo">by CEO</string>
     <string name="add_company">Add company</string>
-    <string name="about">About:</string>
+    <string name="about">About</string>
     <string name="log_out">Log Out</string>
     <string name="join">Join</string>
     <string name="enter_company_reference_key">Enter company reference key</string>
@@ -30,6 +30,8 @@
     <string name="startShift">START SHIFT</string>
     <string name="eur">€</string>
     <string name="already_own_company">Already own a Company? <b>Create new.</b></string>
+    <string name="by">by </string>
+    <string name="ceo">CEO</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

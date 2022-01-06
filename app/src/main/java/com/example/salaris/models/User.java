@@ -10,6 +10,7 @@ public class User implements Serializable {
     private double hourlyRate;
     private Date dateJoined;
     private ArrayList<Workhour> workhours = new ArrayList();
+    private Company company;
 
     public User(String firstName, String lastName, String address, String city, String postNo, String taxNo, String email, String password) {
         this.firstName = firstName;
@@ -22,9 +23,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String toString() {
-        return this.lastName + ", " + this.firstName + " (" + this.taxNo + ")";
-    }
+    public Company getCompany() { return company; }
+
+    public void setCompany(Company company) { this.company = company; }
+
+    public String toString() { return this.lastName + ", " + this.firstName + " (" + this.taxNo + ")";  }
 
     public Date getDateJoined() { return dateJoined; }
 
@@ -59,6 +62,8 @@ public class User implements Serializable {
     public ArrayList<Workhour> getWorkhours() {
         return this.workhours;
     }
+
+    public String getFullName() { return lastName + ", " + firstName; }
 
     public String getFirstName() {
         return firstName;

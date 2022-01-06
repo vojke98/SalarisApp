@@ -1,6 +1,8 @@
 package com.example.salaris.models;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     public static String CO = "CO";
     public static String MANAGER = "Manager";
     public static String WORKER = "Worker";
@@ -14,7 +16,7 @@ public class Role {
     }
 
     public String toString() {
-        return this.title + "(min. " + this.minHourlyRate + "€/h)";
+        return this.title + " (min. " + this.minHourlyRate + "€/h)";
     }
 
     public String getTitle() {

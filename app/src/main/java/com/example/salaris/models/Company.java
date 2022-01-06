@@ -8,13 +8,14 @@ public class Company implements Serializable {
     private String name, address, city, postNo, taxNo, about;
     private User CEO;
 
-    public Company(String name, String address, String city, String postNo, String taxNo, String about) {
+    public Company(String name, String address, String city, String postNo, String taxNo, String about, User CEO) {
         this.name = name;
         this.address = address;
         this.city = city;
         this.postNo = postNo;
         this.taxNo = taxNo;
         this.about = about;
+        this.CEO = CEO;
     }
 
     public String toString() {

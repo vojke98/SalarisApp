@@ -27,6 +27,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_comp_list.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_company.xml" value="0.33" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_create_company.xml" value="0.22" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_edit_user.xml" value="0.1555921052631579" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_join_company.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_join_requests.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/activity_login.xml" value="0.33" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/content_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/customcell.xml" value="0.34794520547945207" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/fragment_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/join_request_list_item.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/staff_list_item.xml" value="0.2293159609120521" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/toolbar.xml" value="0.34057971014492755" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/Salaris/app/src/main/res/layout/workhour_list_item.xml" value="0.2293159609120521" />

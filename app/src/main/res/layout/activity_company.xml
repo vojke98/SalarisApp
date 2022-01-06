@@ -121,13 +121,26 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvCompanyCEO"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/by_ceo"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvCEOlbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/by"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/tvCompanyCEO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceo"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider1"
@@ -143,17 +156,37 @@
                 android:layout_height="wrap_content"
                 android:text="ROLE" />
 
-            <TextView
-                android:id="@+id/tvHourlyRate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="- €/h" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvHourlyRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
+                <TextView
+                    android:id="@+id/tvHourlyRateLbl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="€/h" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvDateJoined"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Employee since 1.1.2021" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvDateJoinedLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Employee since " />
+                <TextView
+                    android:id="@+id/tvDateJoined"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1.1.2021" />
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider2"

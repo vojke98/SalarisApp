@@ -25,7 +25,10 @@ import com.example.salaris.models.User;
 import com.example.salaris.models.User_Company;
 import com.example.salaris.models.Workhour;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CompanyActivity extends AppCompatActivity {
     User user;
@@ -33,7 +36,7 @@ public class CompanyActivity extends AppCompatActivity {
     Context context;
 
     FloatingActionButton fabAdd, fabCreate, fabJoin;
-    TextView tvCreate, tvJoin;
+    TextView tvCreate, tvJoin, tvCompanyName, tvCompanyCEO, tvRole, tvHourlyRate, tvDateJoined, tvDescription;
     Toolbar tbToolbar;
     CardView cardCompany, cardAlert;
     ImageView ivLeave;
@@ -54,8 +57,10 @@ public class CompanyActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         this.user = (User) getIntent().getSerializableExtra("user");
-        this.company = fetchUserCompany(user);
+        this.company = fetchUserCompany();
         this.context = this;
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, DD.MM.YYYY");
 
         this.fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         this.fabCreate = (FloatingActionButton) findViewById(R.id.fabCreate);
@@ -66,6 +71,20 @@ public class CompanyActivity extends AppCompatActivity {
         this.cardCompany = (CardView) findViewById(R.id.cardCompany);
         this.cardAlert = (CardView) findViewById(R.id.cardAlert);
         this.ivLeave = (ImageView) findViewById(R.id.ivLeave);
+
+        this.tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
+        this.tvCompanyCEO = (TextView) findViewById(R.id.tvCompanyCEO);
+        this.tvRole = (TextView) findViewById(R.id.tvRole);
+        this.tvHourlyRate = (TextView) findViewById(R.id.tvHourlyRate);
+        this.tvDateJoined = (TextView) findViewById(R.id.tvDateJoined);
+        this.tvDescription = (TextView) findViewById(R.id.tvDescription);
+
+        this.tvCompanyName.setText(this.company.getName());
+        this.tvCompanyCEO.setText(this.company.getCEO().getFullName());
+        this.tvRole.setText(this.user.getRole().toString());
+        this.tvHourlyRate.setText(this.user.getHourlyRate() + "");
+        this.tvDateJoined.setText(simpleDateFormat.format(this.user.getDateJoined()));
+        this.tvDescription.setText(this.company.getAbout());
 
         if(this.company != null)  cardAlert.setVisibility(View.GONE);
         else cardCompany.setVisibility(View.GONE);
@@ -188,9 +207,14 @@ public class CompanyActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private Company fetchUserCompany(User user) {
-        Company company = new Company("SALARIS", "Adress line", "City", "1000", "SL1234567", "About this company");
+    private Company fetchUserCompany() {
+        Role role = new Role("CEO", 15.0);
+        this.user.setRole(role);
+        this.user.setHourlyRate(20.0);
+        this.user.setDateJoined(new Date());
+        Company company = new Company("SALARIS", "Adress line", "City", "1000", "SL1234567", "About this company", this.user);
 
+        this.user.setCompany(company);
         return company;
     }
 
@@ -206,13 +230,10 @@ public class CompanyActivity extends AppCompatActivity {
 
             dialog.dismiss();
         });
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Do nothing
+        builder.setNegativeButton("NO", (dialog, which) -> {
+            // Do nothing
 
-                dialog.dismiss();
-            }
+            dialog.dismiss();
         });
         AlertDialog alert = builder.create();
         alert.show();

@@ -41,8 +41,7 @@
             android:layout_marginBottom="7sp"
             android:ems="10"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:autofillHints="" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -51,8 +50,7 @@
             android:layout_marginBottom="36sp"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:autofillHints="" />
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnLogin"
