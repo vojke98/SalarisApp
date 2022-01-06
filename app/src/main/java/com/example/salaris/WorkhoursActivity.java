@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.salaris.adapters.OnClickInterface;
 import com.example.salaris.adapters.WorkhourListAdapter;
 import com.example.salaris.models.Company;
 import com.example.salaris.models.Role;
@@ -23,11 +23,11 @@ public class WorkhoursActivity extends AppCompatActivity {
     private ArrayList<Workhour> workhours = new ArrayList<>();;
 
     private RecyclerView rvWorkhourList;
-    private TextView tvTotalEarned;
+    private TextView tvCompanyName, tvTaxNo, tvWelcome, tvUser, tvTotalEarned;
     private Button btnStartStop;
 
-    private OnClickInterface onClickInterface;
     private boolean working = false;
+    private boolean readOnly = false;
     private Date from;
 
     @Override
@@ -36,22 +36,22 @@ public class WorkhoursActivity extends AppCompatActivity {
         setContentView(R.layout.activity_workhours);
 
         initializeComponents();
+        setEventListeners();
     }
 
     private void initializeComponents() {
-        this.onClickInterface = new OnClickInterface() {
-            @Override
-            public void setClick(int position) {}
-        };
 
         this.user = (User) getIntent().getSerializableExtra("user");
         this.company = (Company) getIntent().getSerializableExtra("company");
+        this.readOnly = getIntent().getBooleanExtra("readOnly", false);
 
         this.rvWorkhourList = (RecyclerView) findViewById(R.id.rvWorkhourList);
+        this.tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
+        this.tvTaxNo = (TextView) findViewById(R.id.tvTaxNo);
+        this.tvWelcome = (TextView) findViewById(R.id.tvWelcome);
+        this.tvUser = (TextView) findViewById(R.id.tvUser);
         this.tvTotalEarned = (TextView) findViewById(R.id.tvTotalEarned);
         this.btnStartStop = (Button) findViewById(R.id.btnStartStop);
-
-        this.btnStartStop.setOnClickListener(view -> toggleShift());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         this.rvWorkhourList.setLayoutManager(layoutManager);
@@ -65,6 +65,20 @@ public class WorkhoursActivity extends AppCompatActivity {
         for(Workhour w : this.workhours)  total += w.getTotalEarned();
 
         this.tvTotalEarned.setText(total + getString(R.string.eur));
+        this.tvCompanyName.setText(this.company.getName());
+        this.tvTaxNo.setText(this.user.getTaxNo());
+
+        if(this.readOnly) {
+            this.btnStartStop.setVisibility(View.GONE);
+            this.tvWelcome.setText("Worker ");
+            this.tvUser.setText(this.user.getFullName());
+        } else {
+            this.tvUser.setText(this.user.getFirstName());
+        }
+    }
+
+    private void setEventListeners() {
+        this.btnStartStop.setOnClickListener(view -> toggleShift());
     }
 
     private void fetchWorkhours() {

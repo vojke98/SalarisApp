@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.example.salaris.adapters.ItemListener;
-import com.example.salaris.adapters.OnClickInterface;
+
 import com.example.salaris.adapters.StaffListAdapter;
 import com.example.salaris.models.Company;
 import com.example.salaris.models.Role;
@@ -61,6 +59,8 @@ public class StaffActivity extends AppCompatActivity implements StaffListAdapter
     public void onUserClick(int position) {
         Intent intent = new Intent(this, WorkhoursActivity.class);
         intent.putExtra("user", staff.get(position));
+        intent.putExtra("company", this.company);
+        intent.putExtra("readOnly", true);
         startActivity(intent);
     }
 

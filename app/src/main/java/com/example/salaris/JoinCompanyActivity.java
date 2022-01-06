@@ -2,9 +2,11 @@ package com.example.salaris;
 
 import com.example.salaris.helper.GenericOnKeyListener;
 import com.example.salaris.helper.GenericTextWatcher;
+import com.example.salaris.models.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -13,6 +15,9 @@ import android.widget.TextView;
 
 
 public class JoinCompanyActivity extends AppCompatActivity  {
+    private final int GET_NEW_COMPANY = 0;
+
+    private User user;
     private Button btnJoin;
     private EditText etRefKey1, etRefKey2, etRefKey3, etRefKey4, etRefKey5, etRefKey6;
     private TextView tvCreate;
@@ -26,6 +31,7 @@ public class JoinCompanyActivity extends AppCompatActivity  {
     }
 
     private  void initializeComponents() {
+        this.user = (User) getIntent().getSerializableExtra("user");
         this.btnJoin = (Button) findViewById(R.id.btnJoin);
         this.etRefKey1 = (EditText) findViewById(R.id.etRefKey1);
         this.etRefKey2 = (EditText) findViewById(R.id.etRefKey2);
@@ -65,7 +71,21 @@ public class JoinCompanyActivity extends AppCompatActivity  {
 
     private void goToCreateCompanyActivity() {
         Intent intent = new Intent(this, CreateCompanyActivity.class);
-        startActivity(intent);
-        finish();
+        intent.putExtra("user", this.user);
+        startActivityForResult(intent, GET_NEW_COMPANY);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == GET_NEW_COMPANY) {
+            if (resultCode == Activity.RESULT_OK) {
+                setResult(Activity.RESULT_OK, intent);
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // something went wrong
+            }
+
+            finish();
+        }
     }
 }

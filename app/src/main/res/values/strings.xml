@@ -30,8 +30,11 @@
     <string name="startShift">START SHIFT</string>
     <string name="eur">€</string>
     <string name="already_own_company">Already own a Company? <b>Create new.</b></string>
-    <string name="by">by </string>
+    <string name="by">by</string>
     <string name="ceo">CEO</string>
+    <string name="employee_since">Employee since</string>
+    <string name="welcome">Welcome,</string>
+    <string name="tax_no">Tax no.</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

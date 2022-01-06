@@ -2,6 +2,7 @@ package com.example.salaris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -13,6 +14,9 @@ import com.example.salaris.models.Role;
 import com.example.salaris.models.User;
 
 public class CreateCompanyActivity extends AppCompatActivity {
+
+    private final int GET_NEW_COMPANY = 0;
+
     private User user;
     private TextView tvJoin;
     private EditText etCompanyName, etAddressLine, etCity, etPostNo, etTaxNo, etAbout;
@@ -46,8 +50,8 @@ public class CreateCompanyActivity extends AppCompatActivity {
 
     private void goToJoinCompanyActivity() {
         Intent intent = new Intent(this, JoinCompanyActivity.class);
-        startActivity(intent);
-        finish();
+        intent.putExtra("user", this.user);
+        startActivityForResult(intent, GET_NEW_COMPANY);
     }
 
     private void createCompany() {
@@ -58,6 +62,24 @@ public class CreateCompanyActivity extends AppCompatActivity {
         this.user.setCompany(company);
         this.user.setRole(role);
 
+        Intent intent = new Intent();
+        intent.putExtra("company", company);
+        setResult(Activity.RESULT_OK, intent);
+
         finish();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == GET_NEW_COMPANY) {
+            if (resultCode == Activity.RESULT_OK) {
+                setResult(Activity.RESULT_OK, intent);
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // something went wrong
+            }
+
+            finish();
+        }
     }
 }

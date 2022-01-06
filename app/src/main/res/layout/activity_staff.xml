@@ -17,15 +17,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTaxNo"
+    <LinearLayout
+        android:id="@+id/llTaxNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Tax no"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvCompanyName" />
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvTaxNoLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="@string/tax_no"
+            android:textSize="12sp"
+            android:textColor="#969696"/>
+        <TextView
+            android:id="@+id/tvTaxNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llCEO"
@@ -40,7 +55,8 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome, "
+            android:layout_marginEnd="4dp"
+            android:text="@string/welcome"
             android:textSize="16sp" />
 
         <TextView

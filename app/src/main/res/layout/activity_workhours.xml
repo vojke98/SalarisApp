@@ -17,15 +17,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTaxNo"
+    <LinearLayout
+        android:id="@+id/llTaxNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Tax no"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvCompanyName" />
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvTaxNoLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="Tax no."
+            android:textSize="12sp"
+            android:textColor="#969696"/>
+        <TextView
+            android:id="@+id/tvTaxNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tax no"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llWorker"
@@ -40,14 +55,15 @@
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome, "
+            android:layout_marginEnd="4dp"
+            android:text="@string/welcome"
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/tvCompanyCEO"
+            android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Worker"
+            android:text="User"
             android:textSize="16sp" />
 
     </LinearLayout>
@@ -78,7 +94,8 @@
             android:id="@+id/tvTotalEarnedLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total earned: " />
+            android:layout_marginEnd="8dp"
+            android:text="Total earned:" />
 
         <TextView
             android:id="@+id/tvTotalEarned"

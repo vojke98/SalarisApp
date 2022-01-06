@@ -5,8 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -22,28 +22,25 @@ import android.widget.TextView;
 import com.example.salaris.models.Company;
 import com.example.salaris.models.Role;
 import com.example.salaris.models.User;
-import com.example.salaris.models.User_Company;
-import com.example.salaris.models.Workhour;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class CompanyActivity extends AppCompatActivity {
-    User user;
-    Company company;
-    Context context;
+    private User user;
+    private Company company;
+    private Context context;
 
-    FloatingActionButton fabAdd, fabCreate, fabJoin;
-    TextView tvCreate, tvJoin, tvCompanyName, tvCompanyCEO, tvRole, tvHourlyRate, tvDateJoined, tvDescription;
-    Toolbar tbToolbar;
-    CardView cardCompany, cardAlert;
-    ImageView ivLeave;
+    private FloatingActionButton fabAdd, fabCreate, fabJoin;
+    private TextView tvCreate, tvJoin, tvCompanyName, tvCompanyCEO, tvRole, tvHourlyRate, tvDateJoined, tvDescription;
+    private Toolbar tbToolbar;
+    private CardView cardCompany, cardAlert;
+    private ImageView ivLeave;
 
-    private boolean fabVisible = false;
+    private boolean fabClicked = false;
+    private final int GET_NEW_COMPANY = 0;
 
-    private Animation fabOpenRotateAnim, fabCloseRotateAnim, fabExpandAnim, fabCollapseAnim;
+    private Animation rotateOpen, rotateClose, fromBottom, toBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class CompanyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_company);
 
         initializeComponents();
-        setOnClickListeners();
+        setEventListeners();
         checkLocationService();
     }
 
@@ -59,8 +56,6 @@ public class CompanyActivity extends AppCompatActivity {
         this.user = (User) getIntent().getSerializableExtra("user");
         this.company = fetchUserCompany();
         this.context = this;
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, DD.MM.YYYY");
 
         this.fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         this.fabCreate = (FloatingActionButton) findViewById(R.id.fabCreate);
@@ -79,24 +74,13 @@ public class CompanyActivity extends AppCompatActivity {
         this.tvDateJoined = (TextView) findViewById(R.id.tvDateJoined);
         this.tvDescription = (TextView) findViewById(R.id.tvDescription);
 
-        this.tvCompanyName.setText(this.company.getName());
-        this.tvCompanyCEO.setText(this.company.getCEO().getFullName());
-        this.tvRole.setText(this.user.getRole().toString());
-        this.tvHourlyRate.setText(this.user.getHourlyRate() + "");
-        this.tvDateJoined.setText(simpleDateFormat.format(this.user.getDateJoined()));
-        this.tvDescription.setText(this.company.getAbout());
+        this.rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
+        this.rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+        this.fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
+        this.toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
 
-        if(this.company != null)  cardAlert.setVisibility(View.GONE);
-        else cardCompany.setVisibility(View.GONE);
-
-        this.fabOpenRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_open_rotate_anim);
-        this.fabCloseRotateAnim = AnimationUtils.loadAnimation(this, R.anim.fab_close_rotate_anim);
-        this.fabExpandAnim = AnimationUtils.loadAnimation(this, R.anim.fab_expand_anim);
-        this.fabCollapseAnim = AnimationUtils.loadAnimation(this, R.anim.fab_collapse_anim);
-
-        this.ivLeave.setOnClickListener(view -> leaveCompany());
-
-        setSupportActionBar(tbToolbar);
+        setSupportActionBar(this.tbToolbar);
+        onCompanyUpdate();
     }
 
     @Override
@@ -115,12 +99,26 @@ public class CompanyActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setOnClickListeners() {
-        this.fabAdd.setOnClickListener(view -> fabToggle());
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == GET_NEW_COMPANY) {
+            if (resultCode == Activity.RESULT_OK) {
+                this.company = (Company) intent.getSerializableExtra("company");
+                onCompanyUpdate();
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                // something went wrong
+            }
+        }
+    }
+
+    private void setEventListeners() {
+        this.fabAdd.setOnClickListener(view -> fabToggle(!this.fabClicked));
         this.fabCreate.setOnClickListener(view -> goToCreateCompanyActivity());
         this.fabJoin.setOnClickListener(view -> goToJoinCompanyActivity());
 
         this.cardCompany.setOnClickListener(view -> goToStaffActivity());
+        this.ivLeave.setOnClickListener(view -> leaveCompany());
     }
 
     private void checkLocationService() {
@@ -146,31 +144,38 @@ public class CompanyActivity extends AppCompatActivity {
         }
     }
 
-    private void fabToggle() {
-        fabVisible = !fabVisible;
-        if(fabVisible){
-            fabCreate.setVisibility(View.VISIBLE);
-            fabJoin.setVisibility(View.VISIBLE);
-            tvCreate.setVisibility(View.VISIBLE);
-            tvJoin.setVisibility(View.VISIBLE);
+    private void fabToggle(boolean clicked) {
+        //if(this.fabClicked == clicked) return;
 
-            fabAdd.startAnimation(fabOpenRotateAnim);
-            fabCreate.startAnimation(fabExpandAnim);
-            fabJoin.startAnimation(fabExpandAnim);
-            tvCreate.startAnimation(fabExpandAnim);
-            tvJoin.startAnimation(fabExpandAnim);
-        }else{
-            fabCreate.setVisibility(View.INVISIBLE);
-            fabJoin.setVisibility(View.INVISIBLE);
-            tvCreate.setVisibility(View.INVISIBLE);
-            tvJoin.setVisibility(View.INVISIBLE);
+        setFabAnimation(clicked);
+        setFabVisibility(clicked);
 
-            fabAdd.startAnimation(fabCloseRotateAnim);
-            fabCreate.startAnimation(fabCollapseAnim);
-            fabJoin.startAnimation(fabCollapseAnim);
-            tvCreate.startAnimation(fabCollapseAnim);
-            tvJoin.startAnimation(fabCollapseAnim);
+        this.fabClicked = clicked;
+    }
+
+    private void setFabAnimation(boolean clicked) {
+        if(clicked) {
+            this.fabAdd.startAnimation(this.rotateOpen);
+            this.fabCreate.startAnimation(this.fromBottom);
+            this.fabJoin.startAnimation(this.fromBottom);
+            this.tvCreate.startAnimation(this.fromBottom);
+            this.tvJoin.startAnimation(this.fromBottom);
+        } else {
+            this.fabAdd.startAnimation(this.rotateClose);
+            this.fabCreate.startAnimation(this.toBottom);
+            this.fabJoin.startAnimation(this.toBottom);
+            this.tvCreate.startAnimation(this.toBottom);
+            this.tvJoin.startAnimation(this.toBottom);
         }
+    }
+
+    private void setFabVisibility(boolean clicked) {
+        int visibility = clicked ? View.VISIBLE : View.GONE;
+
+        this.tvJoin.setVisibility(visibility);
+        this.fabJoin.setVisibility(visibility);
+        this.tvCreate.setVisibility(visibility);
+        this.fabCreate.setVisibility(visibility);
     }
 
     private void goToLoginActivity() {
@@ -184,13 +189,13 @@ public class CompanyActivity extends AppCompatActivity {
     private void goToJoinCompanyActivity() {
         Intent intent = new Intent(this, JoinCompanyActivity.class);
         intent.putExtra("user", this.user);
-        startActivity(intent);
+        startActivityForResult(intent, GET_NEW_COMPANY);
     }
 
     private void goToCreateCompanyActivity() {
         Intent intent = new Intent(this, CreateCompanyActivity.class);
         intent.putExtra("user", this.user);
-        startActivity(intent);
+        startActivityForResult(intent, GET_NEW_COMPANY);
     }
 
     private void goToWorkhourActivity() {
@@ -218,6 +223,31 @@ public class CompanyActivity extends AppCompatActivity {
         return company;
     }
 
+    private void onCompanyUpdate() {
+        this.fabClicked = false;
+        fabToggle(false);
+
+        if(this.company != null)  {
+            //this.fabAdd.setVisibility(View.GONE);
+            this.cardAlert.setVisibility(View.GONE);
+            this.cardCompany.setVisibility(View.VISIBLE);
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, DD.MM.YYYY");
+
+            this.tvCompanyName.setText(this.company.getName());
+            this.tvCompanyCEO.setText(this.company.getCEO().getFullName());
+            this.tvRole.setText(this.user.getRole().toString());
+            this.tvHourlyRate.setText(this.user.getHourlyRate() + "");
+            this.tvDateJoined.setText(simpleDateFormat.format(this.user.getDateJoined()));
+            this.tvDescription.setText(this.company.getAbout());
+        }
+        else {
+            //this.fabAdd.setVisibility(View.VISIBLE);
+            this.cardAlert.setVisibility(View.VISIBLE);
+            this.cardCompany.setVisibility(View.GONE);
+        }
+    }
+
     private void leaveCompany() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remove company");
@@ -225,8 +255,7 @@ public class CompanyActivity extends AppCompatActivity {
         builder.setPositiveButton("YES", (dialog, which) -> {
             this.company = null;
 
-            this.cardAlert.setVisibility(View.VISIBLE);
-            this.cardCompany.setVisibility(View.GONE);
+            onCompanyUpdate();
 
             dialog.dismiss();
         });
