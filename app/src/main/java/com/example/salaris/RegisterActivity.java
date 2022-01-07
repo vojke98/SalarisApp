@@ -18,24 +18,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etFirstName, etLastName, etAddressLine, etCity, etPostNo, etTaxNo, etEmail, etPassword, etConfirmPassword;
     private Button btnRegister;
     private TextView tvLogin;
-    Intent intent;
-
-    int LAUNCH_REGISTER_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        this.intent = getIntent();
-
-        String test = this.intent.getStringExtra("argName");
-        if (test.equals("value")) {
-            Intent resultIntent = new Intent();
-
-            resultIntent.putExtra("result", "TEST RESULT");
-            startActivityForResult(intent, LAUNCH_REGISTER_ACTIVITY);
-        }
 
         this.etFirstName = (EditText) findViewById(R.id.etFirstName);
         this.etLastName = (EditText) findViewById(R.id.etLastName);
@@ -64,13 +51,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void checkRegister() {
-        if (TextUtils.isEmpty(etEmail.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString())
-                || TextUtils.isEmpty(etAddressLine.getText().toString()) || TextUtils.isEmpty(etCity.getText().toString())
-                || TextUtils.isEmpty(etFirstName.getText().toString()) || TextUtils.isEmpty(etLastName.getText().toString())
-                || TextUtils.isEmpty(etPostNo.getText().toString()) || TextUtils.isEmpty(etTaxNo.getText().toString())
-                || TextUtils.isEmpty(etConfirmPassword.getText().toString())){
-            Toast.makeText(RegisterActivity.this, "Prosimo, popolnite vsa polja!", Toast.LENGTH_SHORT).show();
+        if (isEmpty(this.etFirstName) || isEmpty(this.etAddressLine) || isEmpty(this.etCity) || isEmpty(this.etFirstName) || isEmpty(this.etLastName) || isEmpty(this.etPostNo) || isEmpty(this.etTaxNo) || isEmpty(this.etConfirmPassword) || isEmpty(this.etPassword)) {
+            Toast.makeText(RegisterActivity.this, "Please fill all required fields.", Toast.LENGTH_SHORT).show();
         } else goToCompanyActivity();
+    }
+
+    private boolean isEmpty(EditText et) {
+        return et.getText().toString().trim().length() == 0;
     }
 
 }
