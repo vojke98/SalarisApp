@@ -7,12 +7,21 @@ public class Role implements Serializable {
     public static String MANAGER = "Manager";
     public static String WORKER = "Worker";
 
-    String title;
-    Double minHourlyRate;
+    private Integer id;
+    private String title;
+    private Double minHourlyRate;
 
     public Role(String title, Double minHourlyRate) {
         this.title = title;
         this.minHourlyRate = minHourlyRate;
+    }
+
+    public Integer getID() {
+        return id;
+    }
+
+    public void setID(Integer id) {
+        this.id = id;
     }
 
     public String toString() {

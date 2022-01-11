@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +20,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.example.salaris.helper.API;
+import com.example.salaris.helper.VolleyCallback;
 import com.example.salaris.models.Company;
 import com.example.salaris.models.Role;
 import com.example.salaris.models.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,7 +45,6 @@ public class CompanyActivity extends AppCompatActivity {
 
     private FloatingActionButton fabAdd, fabCreate, fabJoin;
     private TextView tvCreate, tvJoin, tvCompanyName, tvCompanyCEO, tvRole, tvHourlyRate, tvDateJoined, tvDescription;
-    private Toolbar tbToolbar;
     private CardView cardCompany, cardAlert;
     private ImageView ivLeave;
 
@@ -50,6 +61,9 @@ public class CompanyActivity extends AppCompatActivity {
         initializeComponents();
         setEventListeners();
         checkLocationService();
+
+        API api = new API(this);
+
     }
 
     private void initializeComponents() {
@@ -57,29 +71,29 @@ public class CompanyActivity extends AppCompatActivity {
         this.company = fetchUserCompany();
         this.context = this;
 
-        this.fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
-        this.fabCreate = (FloatingActionButton) findViewById(R.id.fabCreate);
-        this.fabJoin = (FloatingActionButton) findViewById(R.id.fabJoin);
-        this.tvCreate = (TextView) findViewById(R.id.tvCreate);
-        this.tvJoin = (TextView) findViewById(R.id.tvJoin);
-        this.tbToolbar = (Toolbar) findViewById(R.id.tbToolbar);
-        this.cardCompany = (CardView) findViewById(R.id.cardCompany);
-        this.cardAlert = (CardView) findViewById(R.id.cardAlert);
-        this.ivLeave = (ImageView) findViewById(R.id.ivLeave);
+        this.fabAdd = findViewById(R.id.fabAdd);
+        this.fabCreate = findViewById(R.id.fabCreate);
+        this.fabJoin = findViewById(R.id.fabJoin);
+        this.tvCreate = findViewById(R.id.tvCreate);
+        this.tvJoin = findViewById(R.id.tvJoin);
+        this.cardCompany = findViewById(R.id.cardCompany);
+        this.cardAlert = findViewById(R.id.cardAlert);
+        this.ivLeave = findViewById(R.id.ivLeave);
 
-        this.tvCompanyName = (TextView) findViewById(R.id.tvCompanyName);
-        this.tvCompanyCEO = (TextView) findViewById(R.id.tvCompanyCEO);
-        this.tvRole = (TextView) findViewById(R.id.tvRole);
-        this.tvHourlyRate = (TextView) findViewById(R.id.tvHourlyRate);
-        this.tvDateJoined = (TextView) findViewById(R.id.tvDateJoined);
-        this.tvDescription = (TextView) findViewById(R.id.tvDescription);
+        this.tvCompanyName = findViewById(R.id.tvCompanyName);
+        this.tvCompanyCEO = findViewById(R.id.tvCompanyCEO);
+        this.tvRole = findViewById(R.id.tvRole);
+        this.tvHourlyRate = findViewById(R.id.tvHourlyRate);
+        this.tvDateJoined = findViewById(R.id.tvDateJoined);
+        this.tvDescription = findViewById(R.id.tvDescription);
 
         this.rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
         this.rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
         this.fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
         this.toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
 
-        setSupportActionBar(this.tbToolbar);
+        Toolbar tbToolbar = findViewById(R.id.tbToolbar);
+        setSupportActionBar(tbToolbar);
         onCompanyUpdate();
     }
 
@@ -105,9 +119,13 @@ public class CompanyActivity extends AppCompatActivity {
         if (requestCode == GET_NEW_COMPANY) {
             if (resultCode == Activity.RESULT_OK) {
                 this.company = (Company) intent.getSerializableExtra("company");
+                Role role = new Role("CEO", 15.0);
+                this.user.setCompany(this.company);
+                this.user.setRole(role);
                 onCompanyUpdate();
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                // something went wrong
+                // something went wrongasd
+                System.out.println("REQUEST CANCELED");
             }
         }
     }
@@ -117,8 +135,13 @@ public class CompanyActivity extends AppCompatActivity {
         this.fabCreate.setOnClickListener(view -> goToCreateCompanyActivity());
         this.fabJoin.setOnClickListener(view -> goToJoinCompanyActivity());
 
-        this.cardCompany.setOnClickListener(view -> goToStaffActivity());
+        this.cardCompany.setOnClickListener(view -> atCompanyClicked());
         this.ivLeave.setOnClickListener(view -> leaveCompany());
+    }
+
+    private void atCompanyClicked() {
+        if(this.company.getCEO() == this.user) goToStaffActivity();
+        else goToWorkhourActivity();
     }
 
     private void checkLocationService() {
@@ -145,8 +168,6 @@ public class CompanyActivity extends AppCompatActivity {
     }
 
     private void fabToggle(boolean clicked) {
-        //if(this.fabClicked == clicked) return;
-
         setFabAnimation(clicked);
         setFabVisibility(clicked);
 
@@ -187,15 +208,21 @@ public class CompanyActivity extends AppCompatActivity {
     }
 
     private void goToJoinCompanyActivity() {
-        Intent intent = new Intent(this, JoinCompanyActivity.class);
-        intent.putExtra("user", this.user);
-        startActivityForResult(intent, GET_NEW_COMPANY);
+        if(this.company != null) Toast.makeText(this, "You are already in the company.", Toast.LENGTH_SHORT).show();
+        else {
+            Intent intent = new Intent(this, JoinCompanyActivity.class);
+            intent.putExtra("user", this.user);
+            startActivityForResult(intent, GET_NEW_COMPANY);
+        }
     }
 
     private void goToCreateCompanyActivity() {
-        Intent intent = new Intent(this, CreateCompanyActivity.class);
-        intent.putExtra("user", this.user);
-        startActivityForResult(intent, GET_NEW_COMPANY);
+        if(this.company != null) Toast.makeText(this, "You are already in the company.", Toast.LENGTH_SHORT).show();
+        else {
+            Intent intent = new Intent(this, CreateCompanyActivity.class);
+            intent.putExtra("user", this.user);
+            startActivityForResult(intent, GET_NEW_COMPANY);
+        }
     }
 
     private void goToWorkhourActivity() {

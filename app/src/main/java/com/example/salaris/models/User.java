@@ -1,16 +1,22 @@
 package com.example.salaris.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class User implements Serializable {
-    private String firstName, lastName, address, city, postNo, taxNo, email, password;
+    private Integer id;
+    private String firstName, lastName, address, city, postNo, taxNo, email, password, qualifications, about;
     private Role role;
     private double hourlyRate;
     private Date dateJoined;
     private ArrayList<Workhour> workhours = new ArrayList();
     private Company company;
+
+    private Integer companyId, roleId, addressId;
 
     public User(String firstName, String lastName, String address, String city, String postNo, String taxNo, String email, String password) {
         this.firstName = firstName;
@@ -22,6 +28,28 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
     }
+
+    public User(Integer id, String firstName, String lastName, String taxNo, String email, String password, Integer companyId, Integer roleId, Integer addressId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.taxNo = taxNo;
+        this.email = email;
+        this.password = password;
+        this.companyId = companyId;
+        this.roleId = roleId;
+        this.addressId = addressId;
+    }
+
+    public Integer getID() {
+        return id;
+    }
+
+    public void setID(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getCompanyId() { return companyId; }
 
     public Company getCompany() { return company; }
 
@@ -127,5 +155,23 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public JSONObject toJSON() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("tax_no", this.taxNo);
+            obj.put("first_name", this.firstName);
+            obj.put("last_name", this.lastName);
+            obj.put("email", this.email);
+            obj.put("qualifications", this.qualifications);
+            obj.put("user_about_info", this.about);
+            obj.put("password", this.password);
+            obj.put("address", this.address);
+            obj.put("company", this.company.getID());
+            obj.put("role", this.role.getID());
+        } catch (JSONException e) { e.printStackTrace(); }
+
+        return obj;
     }
 }

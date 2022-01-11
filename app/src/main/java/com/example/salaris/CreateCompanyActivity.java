@@ -56,11 +56,11 @@ public class CreateCompanyActivity extends AppCompatActivity {
 
     private void createCompany() {
         // DO THE THING
-        Role role = new Role("CEO", 15.0);
+        //Role role = new Role("CEO", 15.0);
         Company company = new Company(this.etCompanyName.getText().toString(), this.etAddressLine.getText().toString(), this.etCity.getText().toString(), this.etPostNo.getText().toString(), this.etTaxNo.getText().toString(), this.etAbout.getText().toString(), this.user);
 
-        this.user.setCompany(company);
-        this.user.setRole(role);
+        /*this.user.setCompany(company);
+        this.user.setRole(role);*/
 
         Intent intent = new Intent();
         intent.putExtra("company", company);
