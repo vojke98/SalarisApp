@@ -64,7 +64,7 @@ public class WorkhoursActivity extends AppCompatActivity {
 
         for(Workhour w : this.workhours)  this.total += w.getTotalEarned();
 
-        this.tvTotalEarned.setText(this.total + getString(R.string.eur));
+        this.tvTotalEarned.setText(String.format("%.2f€", this.total));
         this.tvCompanyName.setText(this.company.getName());
         this.tvTaxNo.setText(this.user.getTaxNo());
 
@@ -102,7 +102,7 @@ public class WorkhoursActivity extends AppCompatActivity {
 
             this.workhours.add(workhour);
             this.total += workhour.getTotalEarned();
-            this.tvTotalEarned.setText(this.total + getString(R.string.eur));
+            this.tvTotalEarned.setText(String.format("%.2f€", this.total));
 
             this.workhourListAdapter.notifyDataSetChanged();
         } else {
