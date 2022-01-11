@@ -29,6 +29,7 @@ public class WorkhoursActivity extends AppCompatActivity {
     private boolean working = false;
     private boolean readOnly = false;
     private Date from;
+    private double total = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +62,9 @@ public class WorkhoursActivity extends AppCompatActivity {
         fetchWorkhours();
         this.workhourListAdapter.notifyDataSetChanged();
 
-        double total = 0.0;
-        for(Workhour w : this.workhours)  total += w.getTotalEarned();
+        for(Workhour w : this.workhours)  this.total += w.getTotalEarned();
 
-        this.tvTotalEarned.setText(total + getString(R.string.eur));
+        this.tvTotalEarned.setText(this.total + getString(R.string.eur));
         this.tvCompanyName.setText(this.company.getName());
         this.tvTaxNo.setText(this.user.getTaxNo());
 
@@ -101,6 +101,8 @@ public class WorkhoursActivity extends AppCompatActivity {
             Workhour workhour = new Workhour(user_company, this.from, new Date());
 
             this.workhours.add(workhour);
+            this.total += workhour.getTotalEarned();
+            this.tvTotalEarned.setText(this.total + getString(R.string.eur));
 
             this.workhourListAdapter.notifyDataSetChanged();
         } else {
