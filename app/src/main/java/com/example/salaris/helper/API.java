@@ -8,7 +8,7 @@ import com.android.volley.toolbox.Volley;
 import java.net.URI;
 
 public class API {
-    private final String BASE = "http://192.168.1.101:8000/api";
+    private final String BASE = "https://salaris-beta.herokuapp.com/api";
     private final String USERS = "/users";
     private final String COMPANIES = "/companies";
     private Context context;
